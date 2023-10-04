@@ -1,7 +1,52 @@
 "use client"
+
+import { useState } from "react"
 export default function SearchBar() {
-    const handleSubmit = () => {
+
+    const [searchPrompt, setSearchPrompt] = useState('');
+    const [isLoading, setIsLoading] = useState(false)
+
+    const isValidAmazonProductUrl = (url) => {
+        try {
+            const parsedUrl = new URL(url)
+            const hostname = parsedUrl.hostname;
+
+            if(
+                hostname.includes('amazon.com') || 
+                hostname.includes('amazon.') || 
+                hostname.endsWith('amazon')
+                ) {
+
+                    return true
+                }
+
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+
+        return false
+    }
+
+    const handleSubmit = (e) => {
     //submit logic
+        e.preventDefault();
+
+        const isValidLink = isValidAmazonProductUrl(searchPrompt)
+
+        if(!isValidLink){
+            
+            return alert('Please Provide a valid Amazon link')
+        }
+
+        try {
+            setIsLoading(true)
+        } catch (error) {
+            console.log(error)
+        } finally{
+            setIsLoading(false)
+        }
+
     }
 
   return (
@@ -11,11 +56,17 @@ export default function SearchBar() {
             
         <input 
             type="text"
+            value={searchPrompt}
+            onChange={(e) => setSearchPrompt(e.target.value)}
             placeholder="Enter product link"
-            className="seachbar-input" />
+            className="searchbar-input"
+             />
 
-        <button type="sumbit" className="searchbar-btn">
-            Search
+        <button 
+            type="sumbit" 
+            className="searchbar-btn"
+            disabled={searchPrompt === ''}>
+            {isLoading ? 'Searching...' : 'Search'}
         </button>
     </form>
   )
