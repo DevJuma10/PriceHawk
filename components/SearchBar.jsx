@@ -1,5 +1,6 @@
 "use client"
 
+import { scrapeAndStoreProduct } from "@/lib/actions";
 import { useState } from "react"
 export default function SearchBar() {
 
@@ -28,7 +29,7 @@ export default function SearchBar() {
         return false
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
     //submit logic
         e.preventDefault();
 
@@ -41,6 +42,10 @@ export default function SearchBar() {
 
         try {
             setIsLoading(true)
+
+            //Scrape product page
+            const product = await scrapeAndStoreProduct(searchPrompt)
+
         } catch (error) {
             console.log(error)
         } finally{
