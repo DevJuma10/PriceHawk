@@ -1,12 +1,15 @@
-import { getProductById } from '@/lib/actions'
+import { getProductById, getSimilarProducts } from '@/lib/actions'
 import Image from 'next/image'
 import Link from 'next/link'
-import { redirect } from 'next/dist/server/api-utils'
+import { redirect } from 'next/navigation'
 import PriceInfoCard from '@/components/PriceInfoCard'
+import { formatNumber } from '@/lib/scraper/utils'
+import Modal from '@/components/Modal'
 export default async function ProductDetails( { params:{ id } } ) {
     const product = await getProductById(id)
-
     if(!product) redirect('/')
+
+    const similarProducts = getSimilarProducts(id)
   return (
 
     <div className="product-container">
