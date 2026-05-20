@@ -9,7 +9,7 @@ export default async function ProductDetails( { params:{ id } } ) {
     const product = await getProductById(id)
     if(!product) redirect('/')
 
-    const similarProducts = getSimilarProducts(id)
+    const similarProducts = await getSimilarProducts(id)
   return (
 
     <div className="product-container">
