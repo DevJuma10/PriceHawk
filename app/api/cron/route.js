@@ -5,6 +5,9 @@ import Product from "@/lib/models/product.models";
 import { scrapeAmazonProduct } from "@/lib/scraper/scraper";
 import { scrapeJumiaProduct } from "@/lib/scraper/scrapers/jumia";
 import { scrapetakealotProduct } from "@/lib/scraper/scrapers/takealot";
+import { scrapeBackMarketProduct } from "@/lib/scraper/scrapers/backmarket";
+import { scrapeSwappaProduct } from "@/lib/scraper/scrapers/swappa";
+import { scrapeReebeloProduct } from "@/lib/scraper/scrapers/reebelo";
 import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
 
 export const maxDuration = 10;
@@ -18,9 +21,12 @@ const NOTIF_PRIORITY = ['THRESHOLD_MET', 'CHANGE_OF_STOCK', 'LOWEST_PRICE'];
 
 async function scrapeByStore(url, store) {
   switch (store) {
-    case 'jumia':    return scrapeJumiaProduct(url);
-    case 'takealot': return scrapetakealotProduct(url);
-    default:         return scrapeAmazonProduct(url);
+    case 'jumia':       return scrapeJumiaProduct(url);
+    case 'takealot':    return scrapetakealotProduct(url);
+    case 'backmarket':  return scrapeBackMarketProduct(url);
+    case 'swappa':      return scrapeSwappaProduct(url);
+    case 'reebelo':     return scrapeReebeloProduct(url);
+    default:            return scrapeAmazonProduct(url);
   }
 }
 
