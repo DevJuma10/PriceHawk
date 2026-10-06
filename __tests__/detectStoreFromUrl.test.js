@@ -96,3 +96,16 @@ describe('detectStoreFromUrl', () => {
     })
   })
 })
+
+describe('URLs without a scheme', () => {
+  it('detects amazon.com pasted without https://', () => {
+    expect(detectStoreFromUrl('amazon.com/Apple-iPhone-14-Pro-Max/dp/B0BN93P98N/ref=sr_1_1?crid=33JWR55TL54US')).toEqual(
+      { store: 'amazon', currency: '$' }
+    )
+  })
+  it('detects www.jumia.co.ke pasted without https://', () => {
+    expect(detectStoreFromUrl('  www.jumia.co.ke/product.html ')).toEqual(
+      { store: 'jumia', currency: 'KES' }
+    )
+  })
+})

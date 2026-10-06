@@ -1,7 +1,7 @@
 "use client"
 
 import { scrapeAndStoreMultiStore } from "@/lib/actions"
-import { detectStoreFromUrl } from "@/lib/scraper/detectStore"
+import { detectStoreFromUrl, normalizeUrl } from "@/lib/scraper/detectStore"
 import { useState } from "react"
 
 export default function SearchBar() {
@@ -23,7 +23,7 @@ export default function SearchBar() {
     e.preventDefault()
     setError('')
 
-    const filled = urls.filter(Boolean)
+    const filled = urls.map(normalizeUrl).filter(Boolean)
     if (filled.length === 0) return
 
     // Validate every URL — must be a recognised store
