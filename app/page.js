@@ -28,7 +28,7 @@ export default async function Home() {
             </h1>
 
             <p className="mt-6">
-              Track prices across Amazon, Jumia, and Takealot. Get alerted the moment a deal drops.
+              Track prices across Amazon, Jumia, Takealot, Back Market, Swappa, and Reebelo. Get alerted the moment a deal drops.
             </p>
 
             <SearchBar />

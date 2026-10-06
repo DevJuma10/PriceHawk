@@ -29,7 +29,7 @@ export default function SearchBar() {
     // Validate every URL — must be a recognised store
     for (const url of filled) {
       if (!detectStoreFromUrl(url)) {
-        setError(`Unrecognised store URL: ${url}. Supported: Amazon, Jumia, Takealot.`)
+        setError(`Unrecognised store URL: ${url}. Supported: Amazon, Jumia, Takealot, Back Market, Swappa, Reebelo.`)
         return
       }
     }
@@ -56,7 +56,7 @@ export default function SearchBar() {
             onChange={(e) => updateUrl(i, e.target.value)}
             placeholder={
               i === 0
-                ? "Paste a product URL (Amazon, Jumia, Takealot)"
+                ? "Paste a product URL (Amazon, Jumia, Takealot, Back Market, Swappa, Reebelo)"
                 : "Add another store URL for the same product"
             }
             className="searchbar-input"

@@ -5,6 +5,9 @@ const STORE_LABELS = {
   amazon: 'Amazon',
   jumia: 'Jumia',
   takealot: 'Takealot',
+  backmarket: 'Back Market',
+  swappa: 'Swappa',
+  reebelo: 'Reebelo',
 }
 
 export default function MultiStoreCard({ group }) {
