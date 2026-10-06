@@ -72,7 +72,7 @@ You can submit several URLs for the same product from different stores; they're 
 │   │   └── mongoose.js         # DB connection
 │   └── nodemailer/index.js     # Email generation & sending
 ├── scripts/
-│   └── migrate-add-store-field.js # One-time backfill of store/productGroupId on old records
+│   └── migrate-add-store-field.mjs # One-time backfill of store/productGroupId on old records
 └── __tests__/                  # Jest tests (store detection, price extraction)
 ```
 
@@ -117,6 +117,12 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+If you have products saved from before multi-store support, backfill their `store` and `productGroupId` fields once (safe to re-run):
+
+```bash
+npm run migrate
+```
 
 Run the tests with:
 
